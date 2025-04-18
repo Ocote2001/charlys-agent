@@ -48,7 +48,7 @@
       const data = { name, location, age: Number(age) };
 
       try {
-        const res = await fetch("https://script.google.com/macros/s/AKfycbwGLxgs6jQDn8VZFgTlocXtqGv32Zhv48WLAlMgZihNLl2MSyxwaz9coKr2S6mcOVx2/exec", {
+        const res = await fetch("https://corsproxy.io/?" + encodeURIComponent("https://script.google.com/macros/s/AKfycbwGLxgs6jQDn8VZFgTlocXtqGv32Zhv48WLAlMgZihNLl2MSyxwaz9coKr2S6mcOVx2/exec"), {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
