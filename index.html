@@ -48,10 +48,10 @@
       const data = { name, location, age: Number(age) };
 
       try {
-        const res = await fetch("https://script.google.com/macros/s/AKfycbwCDFhqi5Gv4EJAFBB3H8xjPMGsoCyj1NfadmllVhwfG2qGRg3XaU4CuWcbKymrut4I/exec", {
+        const res = await fetch("https://YOUR-NEW-REPLIT-PROXY.repl.co", {
           method: "POST",
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "application/json"
           },
           body: JSON.stringify(data)
         });
