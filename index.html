@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Charly's Agent</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 400px;
+      margin: 50px auto;
+    }
+    input, button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+    }
+    #comment {
+      font-style: italic;
+      margin: 10px 0;
+    }
+  </style>
+</head>
+<body>
+  <h2>Welcome to Charly's Agent</h2>
+  <input id="name" placeholder="Your name" />
+  <input id="origin" placeholder="Where are you from?" />
+  <input id="age" type="number" placeholder="How old are you?" />
+  <div id="comment"></div>
+  <button onclick="submitForm()">Submit</button>
+
+  <script>
+    function getComment(city) {
+      return city.toLowerCase().includes("cali")
+        ? "Cali — where the sunshine has an attitude 😎"
+        : `Nice! ${city} sounds interesting.`;
+    }
+
+    async function submitForm() {
+      const name = document.getElementById('name').value;
+      const location = document.getElementById('origin').value;
+      const age = document.getElementById('age').value;
+      const comment = getComment(location);
+
+      document.getElementById('comment').textContent = comment;
+
+      const data = { name, location, age: Number(age) };
+
+      try {
+        const res = await fetch("https://script.google.com/macros/s/AKfycbwGLxgs6jQDn8VZFgTlocXtqGv32Zhv48WLAlMgZihNLl2MSyxwaz9coKr2S6mcOVx2/exec", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data)
+        });
+
+        if (res.ok) {
+          alert("Thanks! Your info was sent.");
+        } else {
+          alert("Something went wrong.");
+        }
+      } catch (err) {
+        alert("Error sending data.");
+        console.error(err);
+      }
+    }
+  </script>
+</body>
+</html>
